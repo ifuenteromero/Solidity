@@ -19,6 +19,7 @@ contract FirstContract {
     address owner;
 
     constructor () {
+        // persona que despliega el contrato
         owner = msg.sender;
     }
 
