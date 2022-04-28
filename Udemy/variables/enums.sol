@@ -6,7 +6,7 @@ contract Enums {
     // tipos de datos creados por el usuario enumerable
     // miembros
     enum state {ON, OFF}
-    state light;
+    state light = state.ON;
 
     function turnOn () public {
         if(isOff(light)) light = state.ON;
