@@ -28,4 +28,9 @@ contract newOwner {
     function changeOwner(address _newOwner) public onlyOwner validAddress(_newOwner) {
         owner = _newOwner;
     }
+
+    function getAddress() public view returns(address){
+        // dirección del contrato
+        return address(this);
+    }
 }

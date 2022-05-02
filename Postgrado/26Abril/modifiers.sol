@@ -35,14 +35,13 @@ contract destructible is owned {
 contract priced {
     // Modifiers can receive arguments:
     modifier costs(uint price) {
-        if (msg.value >= price) {
-            _;
-        }
+        require(msg.value >= price, "minimum price");
+        _;
     }
 }
 
 contract Register is priced, destructible {
-    mapping (address => bool) registeredAddresses;
+    mapping (address => bool) public registeredAddresses;
     uint price;
 
     constructor(uint initialPrice) { price = initialPrice; }
@@ -57,6 +56,11 @@ contract Register is priced, destructible {
     function changePrice(uint _price) public onlyOwner {
         price = _price;
     }
+
+    function getBalance() public view returns(uint) {
+        return address(this).balance;
+    }
+
 }
 
 contract Mutex {
